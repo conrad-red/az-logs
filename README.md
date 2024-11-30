@@ -43,7 +43,7 @@ az deployment group create --resource-group "$RESOURCE_GROUP" --template-file "a
 
 Error:
 
-```shell
+```json
 {"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}
 
 ```
