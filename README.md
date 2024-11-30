@@ -32,18 +32,37 @@ When we attempt to add `Custom JSON Logs` as an additional Data Source, this war
 
 ### 2. ARM template
 
-Using this command:
+We used various ARM template formats found in Microsoft Documentation and suggested in other resources.
 
 ```shell
 az deployment group create --resource-group "$RESOURCE_GROUP" --template-file "arm-templates/template-1.json"
 
 ```
 
-[ARM Template supplied by one of your agents.](arm-templates/template-1.json)
+Templates used with the corresponding result:
+
+[1. ARM Template from a MS agent.](arm-templates/template-1.json)
 
 Error:
 
-```json
-{"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}
+`{"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}`
+
+![2. data-collection-log-json .](arm-templates/template-2.json)
+
+Provided on [MS Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/data-collection-log-json#custom-table)
+
+### 3. Azure CLI
+
+```shell
+
+az monitor data-collection rule create --location “southafricanorth " --resource-group "$RESOURCE_GROUP" --name "test-data-rule-custom-logs" --rule-file "dcr.json" --description "test-data-rule-custom-logs"
 
 ```
+
+`(InvalidPayload) Data collection rule is invalid
+Code: InvalidPayload
+Message: Data collection rule is invalid
+Exception Details:      (InvalidDataFlow) 'DataFlows' destination name is unknown: {"name": "ContainerLog","type": "LogAnalytics", "workspaceResourceId": "/subscriptions/6e1653da-0e24-4d45-a2ec-b4894d8c5724/resourceGroups/test-env-rg/providers/Microsoft.OperationalInsights/workspaces/test-env-law"}.
+        Code: InvalidDataFlow
+        Message: 'DataFlows' destination name is unknown: {"name": "ContainerLog","type": "LogAnalytics", "workspaceResourceId": "/subscriptions/XXXXXXX-XXXX-XXXX-XXXX-XXXXXXX/resourceGroups/test-env-rg/providers/Microsoft.OperationalInsights/workspaces/test-env-law"}.
+        Target: Properties.DataFlows[0]`
