@@ -10,15 +10,13 @@ We want to use `Otel Collector` instead, to ingest the logs into a Log Analytics
 
 ![Basic Log Table](images/basic-log-table.png)
 
-## Creating a data collection rule with a Custom JSON Log
-
 The three methods to create a data collection rule with `Custom JSON Logs`:
 
 * Using Azure Portal
 * Using ARM template
 * Using Azure CLI  
 
-### 1. Azure Portal
+## 1. Using Azure Portal
 
 We were able to create a Data Collection Rule with Performance Counters. The `Azure Monitor Agent`, deployed on our IoT Edge devices,  are successfully ingesting the linux host metrics in the `Perf` table of the Log Analytics Workspace.
 
@@ -30,28 +28,30 @@ When we attempt to add `Custom JSON Logs` as an additional Data Source, this war
 
 ![Custom JSON Logs](images/az-monitor-data-collection-rule-custom-json-logs.png)
 
-### 2. ARM template
-
 We used various ARM template formats found in Microsoft Documentation and suggested in other resources.
+
+## 2. Using ARM templates
 
 ```shell
 az deployment group create --resource-group "$RESOURCE_GROUP" --template-file "arm-templates/template-1.json"
 
 ```
 
-Templates used with the corresponding result:
+### [Template 1. templates/arm-template-1.json](arm-templates/template-1.json)
 
-[1. ARM Template from a MS agent.](arm-templates/template-1.json)
+ARM Template from a MS agent
 
 Error:
 
 `{"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}`
 
-[2. data-collection-log-json .](arm-templates/template-2.json)
+### [Template 2. templates/arm-template-2.json.](arm-templates/template-2.json)
 
-Provided on [MS Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/data-collection-log-json#custom-table)
+Provided MS Learn:
 
-### 3. Azure CLI
+ [https://learn.microsoft.com/en-us/azure/azure-monitor/agents/data-collection-log-json#custom-table](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/data-collection-log-json#custom-table)
+
+## 3. Azure CLI
 
 ```shell
 

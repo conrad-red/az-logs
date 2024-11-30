@@ -1,0 +1,36 @@
+{
+    "location": "southafricanorth",
+    "kind": "Linux",
+    "properties": {
+    "dataSources": {
+        "name": "dockerLogs",
+        "type": "ContainerLog",
+        "containerLog": {
+          "docker": {
+            "logFile": "/var/lib/docker/containers/*/*.log"
+          }
+        }
+      },
+    "destinations": {
+        "logAnalytics": [
+          {
+            "name": "la--527583312",
+            "workspaceId": "1e424694-f8ae-43d8-8f06-07e7e300ac3b",
+            "workspaceResourceId": "/subscriptions/6e1653da-0e24-4d45-a2ec-b4894d8c5724/resourceGroups/ssv3-test-env-rg/providers/Microsoft.OperationalInsights/workspaces/ssv3-test-env-law"
+          }
+        ]
+      },
+      "dataFlows": [
+        {
+            "streams": [
+                "Custom-Json-stream"
+            ],
+            "destinations": [
+                "{\"name\": \"ContainerLog\",\"type\": \"LogAnalytics\", \"workspaceResourceId\": \"/subscriptions/6e1653da-0e24-4d45-a2ec-b4894d8c5724/resourceGroups/ssv3-test-env-rg/providers/Microsoft.OperationalInsights/workspaces/ssv3-test-env-law\"}"
+            ],
+            "transformKql": "source",
+            "outputStream": "Custom-Logs"
+        }
+    ]   
+  }
+}
