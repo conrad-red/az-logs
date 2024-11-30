@@ -47,7 +47,7 @@ Error:
 
 `{"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}`
 
-![2. data-collection-log-json .](arm-templates/template-2.json)
+[2. data-collection-log-json .](arm-templates/template-2.json)
 
 Provided on [MS Learn](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/data-collection-log-json#custom-table)
 
