@@ -1,0 +1,26 @@
+{
+    "type": "Microsoft.Insights/dataCollectionRules",
+    "apiVersion": "2021-04-01",
+    "location": "your-region",
+    "properties": {
+      "dataSources": {
+        "customLogs": [
+          {
+            "name": "DockerLogs",
+            "filePattern": "/var/lib/docker/containers/*/*.log",
+            "recordDelimiter": "\n",
+            "format": "json"
+          }
+        ]
+      },
+      "destinations": {
+        "logAnalytics": [
+          {
+            "workspaceResourceId": "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.OperationalInsights/workspaces/your-workspace"
+          }
+        ]
+      }
+    }
+   }
+   
+   

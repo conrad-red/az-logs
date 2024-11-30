@@ -8,11 +8,9 @@ We want to use `Otel Collector` instead, to ingest the logs into a Log Analytics
 
 * A log analytics workspace with a `DCR-based` custom log table. Transformed from a docker log file, typically found in /var/lib/docker/containers/
 
-![Project Logo](images/basic-log-table.png)
+![Basic Log Table](images/basic-log-table.png)
 
-* 
-
-## Creating a data collection rule with add a Custom JSON Log
+## Creating a data collection rule with a Custom JSON Log
 
 The three methods to create a data collection rule with `Custom JSON Logs`:
 
@@ -22,14 +20,30 @@ The three methods to create a data collection rule with `Custom JSON Logs`:
 
 ### 1. Azure Portal
 
-We were able to create a Data Collection Rule with Performance Counter. The `Azure Monitor Agent`, deployed on our IoT Edge devices,  are successfully ingesting the linux host metrics in the `Perf` table of the Log Analytics Workspace.
+We were able to create a Data Collection Rule with Performance Counters. The `Azure Monitor Agent`, deployed on our IoT Edge devices,  are successfully ingesting the linux host metrics in the `Perf` table of the Log Analytics Workspace.
 
 ![Performance Counters](images/az-monitor-data-collection-rule-performance-counters.png)
 
 When we attempt to add `Custom JSON Logs` as an additional Data Source, this warning appears:
+
 `'Custom JSON log' data source configuration is currently unavailable through the Portal as it is undergoing design updates to accommodate recent changes. For now, please use Azure CLI to configure 'Custom JSON log' in Data Collection Rules. Learn more.`
 
-![Performance Counters](images/az-monitor-data-collection-rule-custom-json-logs.png)
+![Custom JSON Logs](images/az-monitor-data-collection-rule-custom-json-logs.png)
 
 ### 2. ARM template
 
+Using this command:
+
+```shell
+az deployment group create --resource-group "$RESOURCE_GROUP" --template-file "arm-templates/template-1.json"
+
+```
+
+[ARM Template supplied by one of your agents.](arm-templates/template-1.json)
+
+Error:
+
+```shell
+{"code": "InvalidRequestContent", "message": "The request content was invalid and could not be deserialized: 'Could not find member 'type' on object of type 'Template'. Path 'properties.template.type', line 2, position 11.'."}
+
+```
