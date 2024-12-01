@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRuleName": {
+            "value": "s3-basic-container-log-dcr"
+        },
+        "dataCollectionEndpointResourceId": {
+            "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Insights/dataCollectionRules/cred-basic-custom-log-dcr"
+        },
+        "location": {
+            "value": "southafricanorth"
+        },
+        "filePatterns": {
+            "value": "/var/lib/docker/containers/*/*.log"
+        },
+        "tableName": {
+            "value": "Container_Logs"
+        },
+        "transformKql": {
+            "value": "source | project Message = log, TimeGenerated = [\"time\"], Source = stream, Module = parse_json(attrs)[\"tag\"]"
+        },
+        "workspaceResourceId": {
+            "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/s3-test-basic-log-law"
+        }     
+    }
+}

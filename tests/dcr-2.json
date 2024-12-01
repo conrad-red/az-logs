@@ -1,0 +1,39 @@
+{
+  "location": "southafricanorth",
+  "kind": "Linux",  
+  "properties": {
+  "dataSources": {
+      "name": "dockerLogs",
+      "type": "ContainerLog",
+      "containerLog": {
+        "docker": {
+          "logFile": "/var/lib/docker/containers/*/*.log"
+        }
+      }
+    },
+  "destinations": {
+      "logAnalytics": [
+        {
+          "name": "<WORKSPACE_NAME>",
+          "workspaceId": "<WORKSPACDE_ID>",
+          "workspaceResourceId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+          "streams": [
+              "Custom-Json-stream"
+          ],
+          "destinations": [
+              {
+                  "name": "logAnalytics",
+                  "type": "LogAnalytics",
+                  "workspaceResourceId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>"
+              }],
+          "transformKql": "source",
+          "outputStream": "Custom-Logs"
+      }
+  ]   
+  }
+}

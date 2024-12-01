@@ -1,7 +1,7 @@
 {
     "type": "Microsoft.Insights/dataCollectionRules",
     "apiVersion": "2021-04-01",
-    "location": "your-region",
+    "location": "southafricanorth",
     "properties": {
       "dataSources": {
         "customLogs": [
@@ -16,11 +16,9 @@
       "destinations": {
         "logAnalytics": [
           {
-            "workspaceResourceId": "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.OperationalInsights/workspaces/your-workspace"
+            "workspaceResourceId": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/s3-test-basic-log-law"
           }
         ]
       }
     }
-   }
-   
-   
+}

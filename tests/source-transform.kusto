@@ -1,0 +1,2 @@
+source
+| project Message = log, TimeGenerated = ['time'], Source = stream, Module = parse_json(attrs)["tag"]

@@ -37,7 +37,13 @@
             "metadata": {
                 "description": "Resource ID of the Log Analytics workspace with the target table."
             }
-        }
+        },
+        "transformKql": {
+            "type": "string",
+            "metadata": {
+                "description": "Resource ID of the Log Analytics workspace with the target table."
+            }
+        }       
     },
     "variables": {
         "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
@@ -110,7 +116,7 @@
                         "destinations": [
                             "workspace"
                         ],
-                        "transformKql": "source",
+                        "transformKql": "[parameters('transformKql')]",
                         "outputStream": "[variables('tableOutputStream')]"
                     }
                 ]
